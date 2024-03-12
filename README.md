@@ -10,3 +10,9 @@ Each exercise has:
 - a `starter.cpp` with `TODO`s and self-checking tests that you complete,
 - a reference `solution.cpp` that passes the same tests.
 
+
+## Exercises
+
+| # | Exercise | Level | Paradigm |
+| --- | --- | --- | --- |
+| 1 | [Hello, Threads](exercises/01-hello-threads) | Beginner | Thread-per-task / data parallelism |
