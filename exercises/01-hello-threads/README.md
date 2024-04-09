@@ -23,3 +23,13 @@ Try the exercise first; open these one at a time.
 2. The last chunk is usually shorter: clamp `begin` and `end` with `std::min(data.size(), ...)`.
 3. `std::thread` copies its arguments. Wrap the vector in `std::ref(result)` to pass a reference.
 4. Forgetting `join()` calls `std::terminate` in the thread destructor.
+
+## Solution walkthrough
+
+`parallel_sum` is the simplest shape of data parallelism: **partition, compute independently, combine**.
+
+- The chunk size is `ceil(n / workers)`. Clamping both ends keeps trailing workers from reading past the array and turns "more workers than items" into harmless empty ranges.
+- Every worker owns one `partial_sums[worker]`, so there is no shared write and therefore no race. The final reduction happens on the calling thread after all joins; `join()` also provides the happens-before edge that makes the workers' writes visible.
+- `std::thread` decays and copies its arguments, which is why a reference parameter needs `std::ref`. Without it the code does not compile (or worse, mutates a copy in other APIs).
+
+Adjacent slots share cache lines, which costs performance but not correctness; exercise 17 returns to that.
