@@ -33,3 +33,9 @@ Try the exercise first; open these one at a time.
 - `std::thread` decays and copies its arguments, which is why a reference parameter needs `std::ref`. Without it the code does not compile (or worse, mutates a copy in other APIs).
 
 Adjacent slots share cache lines, which costs performance but not correctness; exercise 17 returns to that.
+
+## Bonus challenges
+
+- Replace the manual chunking with `std::thread::hardware_concurrency()` workers by default and measure where adding threads stops helping.
+- Make `parallel_sum` a template over any arithmetic type and any random-access range.
+- Try summing 100 elements with 8 threads. Is it faster than sequential? Explain why or why not.
