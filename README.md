@@ -34,3 +34,4 @@ Suggested loop for each exercise:
 | # | Exercise | Level | Paradigm |
 | --- | --- | --- | --- |
 | 1 | [Hello, Threads](exercises/01-hello-threads) | Beginner | Thread-per-task / data parallelism |
+| 2 | [Mutexes and Data Races](exercises/02-mutex-and-races) | Beginner | Shared-memory mutual exclusion |
