@@ -34,3 +34,9 @@ A data race is two threads touching the same memory without synchronisation wher
 - Reading `balance_` without the lock is still a data race (and undefined behaviour), even if it "looks" harmless.
 
 Rule of thumb: lock around invariants, not around individual variables.
+
+## Bonus challenges
+
+- Add `transfer(Account& to, amount)`. What goes wrong if two threads transfer in opposite directions? (Exercise 3 answers this.)
+- Replace the mutex with `std::atomic<long long>` and a compare-exchange loop for `withdraw`.
+- Run under ThreadSanitizer (`make tsan-02`) with the unprotected starter and read the report.
