@@ -28,3 +28,9 @@ Deadlock requires four conditions (Coffman): mutual exclusion, hold-and-wait, no
 `std::scoped_lock both(left.mutex, right.mutex)` uses `std::lock`'s try-and-back-off algorithm, so a thread never blocks on one mutex while holding another in a way that can form a cycle. The exclusivity check (`in_use` flags in `eat`) proves the forks were really mutually exclusive.
 
 Other valid fixes: impose a total order on forks (lock `min(i, j)` first), or limit the table to `N - 1` diners with a semaphore. The order approach is the one used in production code because it needs no special primitive.
+
+## Bonus challenges
+
+- Implement the lock-ordering variant with plain `std::lock_guard` and compare the throughput.
+- Write a version that deadlocks on purpose and detect it with a watchdog thread plus a timeout.
+- Switch to `std::timed_mutex` and `try_lock_for`. What new problem (livelock/starvation) appears?
