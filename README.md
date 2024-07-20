@@ -36,3 +36,4 @@ Suggested loop for each exercise:
 | 1 | [Hello, Threads](exercises/01-hello-threads) | Beginner | Thread-per-task / data parallelism |
 | 2 | [Mutexes and Data Races](exercises/02-mutex-and-races) | Beginner | Shared-memory mutual exclusion |
 | 3 | [Deadlock and the Dining Philosophers](exercises/03-deadlock-dining-philosophers) | Beginner | Lock ordering / deadlock avoidance |
+| 4 | [Bounded Buffer (Producer/Consumer)](exercises/04-bounded-buffer) | Beginner | Monitor / condition variables |
