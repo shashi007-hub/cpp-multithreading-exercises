@@ -24,3 +24,13 @@ Try the exercise first; open these one at a time.
 2. Always wait with a predicate: `cv.wait(lock, [&]{ return ...; })`. It handles spurious wake-ups and lost notifications.
 3. Modify the state under the mutex, then notify; notifying after unlocking avoids waking a thread that immediately blocks again.
 4. Use `std::unique_lock`, not `lock_guard`, because `wait` must unlock and relock.
+
+## Solution walkthrough
+
+This is the **monitor** pattern: a mutex guards the state, condition variables express "wait until the state satisfies X".
+
+- `wait(lock, pred)` is equivalent to `while (!pred()) wait(lock);`. The loop is mandatory because wake-ups can be spurious and another consumer may steal the item first.
+- The capacity is *back-pressure*: a slow consumer automatically slows producers instead of letting memory grow without bound.
+- `notify_one` is enough because each push enables exactly one pop (and vice versa). Use `notify_all` when one event can enable many waiters, as in exercise 5's `close()`.
+
+Two separate condition variables avoid waking producers when a consumer is needed and the reverse.
