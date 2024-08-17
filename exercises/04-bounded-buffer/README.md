@@ -34,3 +34,9 @@ This is the **monitor** pattern: a mutex guards the state, condition variables e
 - `notify_one` is enough because each push enables exactly one pop (and vice versa). Use `notify_all` when one event can enable many waiters, as in exercise 5's `close()`.
 
 Two separate condition variables avoid waking producers when a consumer is needed and the reverse.
+
+## Bonus challenges
+
+- Add `try_push` and `push_for(timeout)` using `wait_for`.
+- Make `BoundedBuffer` support move-only types and test it with `std::unique_ptr<int>`.
+- Replace the pair of condition variables with a single one and `notify_all`. Measure the cost.
