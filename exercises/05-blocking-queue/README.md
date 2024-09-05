@@ -24,3 +24,13 @@ Try the exercise first; open these one at a time.
 2. After waking, check `items_.empty()` first: if so, the queue was closed and drained.
 3. `close()` must use `notify_all`, since any number of consumers may be waiting.
 4. Set `closed_` while holding the mutex, otherwise a consumer can miss the notification and sleep forever.
+
+## Solution walkthrough
+
+Closing a channel is the cleanest way to say "no more work". It replaces poison-pill sentinels and works with any number of consumers.
+
+- The state change (`closed_ = true`) happens under the mutex. If it did not, a consumer could evaluate the predicate (false), then `close()` could set the flag and notify, and only then would the consumer begin waiting: a **lost wake-up**.
+- `pop` drains remaining items after close, so closing never drops data; this matches Go channels and Rust's `mpsc`.
+- `std::optional<T>` is the return type that cleanly encodes "no item".
+
+This class is intentionally unbounded; exercise 4 shows how bounding adds back-pressure.
