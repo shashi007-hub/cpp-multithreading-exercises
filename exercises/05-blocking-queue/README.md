@@ -34,3 +34,9 @@ Closing a channel is the cleanest way to say "no more work". It replaces poison-
 - `std::optional<T>` is the return type that cleanly encodes "no item".
 
 This class is intentionally unbounded; exercise 4 shows how bounding adds back-pressure.
+
+## Bonus challenges
+
+- Add `try_pop()` and `pop_for(duration)`.
+- Add a `size()` accessor. Why is its result immediately stale?
+- Make a bounded variant that combines this exercise with exercise 4.
