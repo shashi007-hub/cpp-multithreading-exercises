@@ -38,3 +38,4 @@ Suggested loop for each exercise:
 | 3 | [Deadlock and the Dining Philosophers](exercises/03-deadlock-dining-philosophers) | Beginner | Lock ordering / deadlock avoidance |
 | 4 | [Bounded Buffer (Producer/Consumer)](exercises/04-bounded-buffer) | Beginner | Monitor / condition variables |
 | 5 | [Blocking Queue with Close](exercises/05-blocking-queue) | Intermediate | Message passing / graceful shutdown |
+| 6 | [Thread Pool](exercises/06-thread-pool) | Intermediate | Task-based concurrency / executor |
