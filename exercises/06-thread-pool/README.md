@@ -14,3 +14,12 @@ Implement a fixed-size `ThreadPool`.
 - Submitting to a stopped pool throws.
 
 Work in [`starter.cpp`](starter.cpp) and check yourself with `make test-06`. The reference is in [`solution.cpp`](solution.cpp) (`make solution-06`).
+
+## Hints
+
+Try the exercise first; open these one at a time.
+
+1. `std::packaged_task` links a callable to a future. It is move-only, but `std::function` needs copyable callables, so hold it in a `std::shared_ptr`.
+2. Workers loop: wait until `stopping_ || !tasks_.empty()`, exit only when the queue is empty.
+3. Run the task **outside** the lock, otherwise the pool becomes single threaded.
+4. Set `stopping_` under the lock, notify all, then join.
