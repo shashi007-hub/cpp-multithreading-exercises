@@ -23,3 +23,14 @@ Try the exercise first; open these one at a time.
 2. Workers loop: wait until `stopping_ || !tasks_.empty()`, exit only when the queue is empty.
 3. Run the task **outside** the lock, otherwise the pool becomes single threaded.
 4. Set `stopping_` under the lock, notify all, then join.
+
+## Solution walkthrough
+
+The pool decouples *what* to run from *which thread* runs it, and bounds the number of threads regardless of the number of tasks.
+
+- `submit` wraps the call in a `packaged_task<Result()>`. Its future becomes the caller's handle; exceptions are captured inside the shared state, which is why `get()` re-throws them.
+- Workers sleep on a condition variable and only exit when stopping *and* drained, which gives the "finish queued work" guarantee.
+- Executing the task after releasing the mutex is essential: holding it would serialise all work.
+- The destructor joins, so no worker can outlive the queue and mutex it uses (member order matters: threads are created last in practice).
+
+Choosing the pool size: CPU-bound work wants about `hardware_concurrency()` threads; blocking I/O can use more.
