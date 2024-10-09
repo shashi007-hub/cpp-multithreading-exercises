@@ -34,3 +34,9 @@ The pool decouples *what* to run from *which thread* runs it, and bounds the num
 - The destructor joins, so no worker can outlive the queue and mutex it uses (member order matters: threads are created last in practice).
 
 Choosing the pool size: CPU-bound work wants about `hardware_concurrency()` threads; blocking I/O can use more.
+
+## Bonus challenges
+
+- Add `wait_idle()` that blocks until the queue is empty and all workers are idle.
+- Add task priorities using `std::priority_queue`.
+- Implement work stealing: one deque per worker, steal from the back of others when empty.
