@@ -39,3 +39,4 @@ Suggested loop for each exercise:
 | 4 | [Bounded Buffer (Producer/Consumer)](exercises/04-bounded-buffer) | Beginner | Monitor / condition variables |
 | 5 | [Blocking Queue with Close](exercises/05-blocking-queue) | Intermediate | Message passing / graceful shutdown |
 | 6 | [Thread Pool](exercises/06-thread-pool) | Intermediate | Task-based concurrency / executor |
+| 7 | [Futures, Promises and async](exercises/07-futures-and-promises) | Intermediate | Asynchronous results / dataflow |
