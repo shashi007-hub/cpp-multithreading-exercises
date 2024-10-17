@@ -15,3 +15,12 @@ Implement five small tasks with the futures toolbox.
 5. `broadcast_sum(readers)` lets several threads wait on one `std::shared_future`.
 
 Work in [`starter.cpp`](starter.cpp) and check yourself with `make test-07`. The reference is in [`solution.cpp`](solution.cpp) (`make solution-07`).
+
+## Hints
+
+Try the exercise first; open these one at a time.
+
+1. Always pass `std::launch::async`; the default policy may defer execution to `get()`.
+2. Call `.get()` only after launching *all* tasks, otherwise you serialise them.
+3. A `std::future` can be read once. Call `.share()` to get a copyable `std::shared_future`.
+4. `wait_for` returns `std::future_status::ready` or `timeout`.
