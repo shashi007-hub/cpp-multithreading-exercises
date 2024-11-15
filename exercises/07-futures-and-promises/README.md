@@ -24,3 +24,14 @@ Try the exercise first; open these one at a time.
 2. Call `.get()` only after launching *all* tasks, otherwise you serialise them.
 3. A `std::future` can be read once. Call `.share()` to get a copyable `std::shared_future`.
 4. `wait_for` returns `std::future_status::ready` or `timeout`.
+
+## Solution walkthrough
+
+A future/promise pair is a one-shot channel: the producer fulfils the promise, the consumer reads the future.
+
+- `std::async(std::launch::async, ...)` hides thread creation. Its future *blocks in the destructor* until the task completes, which is why `finishes_within` still waits for the slow task before returning.
+- Launch everything first, collect afterwards. Writing `async(...).get()` in a loop is sequential code.
+- Exceptions are part of the channel: `set_exception` on one side becomes a throw from `get()` on the other.
+- `shared_future` allows many readers of one result, like a broadcast.
+
+Futures compose poorly (no `then`) in standard C++; that is where coroutines and libraries such as `std::execution` and Folly come in.
