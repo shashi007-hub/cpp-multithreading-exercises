@@ -35,3 +35,9 @@ A future/promise pair is a one-shot channel: the producer fulfils the promise, t
 - `shared_future` allows many readers of one result, like a broadcast.
 
 Futures compose poorly (no `then`) in standard C++; that is where coroutines and libraries such as `std::execution` and Folly come in.
+
+## Bonus challenges
+
+- Write `when_all(std::vector<std::future<T>>)` returning a future of a vector.
+- Implement a `then(future, f)` continuation with a helper thread. What are its costs?
+- Compare `std::async` with the thread pool from exercise 6 for 10,000 tiny tasks.
