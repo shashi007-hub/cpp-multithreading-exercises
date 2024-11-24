@@ -40,3 +40,4 @@ Suggested loop for each exercise:
 | 5 | [Blocking Queue with Close](exercises/05-blocking-queue) | Intermediate | Message passing / graceful shutdown |
 | 6 | [Thread Pool](exercises/06-thread-pool) | Intermediate | Task-based concurrency / executor |
 | 7 | [Futures, Promises and async](exercises/07-futures-and-promises) | Intermediate | Asynchronous results / dataflow |
+| 8 | [Atomics and Memory Ordering](exercises/08-atomics-and-memory-order) | Advanced | Lock-free primitives |
