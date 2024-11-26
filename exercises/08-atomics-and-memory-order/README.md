@@ -13,3 +13,12 @@ Build three lock-free building blocks.
 3. `Message::publish` / `wait_and_read`: hand a plain `int` payload from one thread to another using a release store and an acquire load on a `ready` flag.
 
 Work in [`starter.cpp`](starter.cpp) and check yourself with `make test-08`. The reference is in [`solution.cpp`](solution.cpp) (`make solution-08`).
+
+## Hints
+
+Try the exercise first; open these one at a time.
+
+1. Lock: acquire ordering on `test_and_set`. Unlock: release ordering on `clear`.
+2. `compare_exchange_weak` refreshes `current` on failure, so the loop condition re-evaluates it automatically.
+3. The payload is a non-atomic variable. Release/acquire on `ready` is what makes the write to it visible.
+4. Use `std::this_thread::yield()` inside spin loops so you are kind to other threads.
