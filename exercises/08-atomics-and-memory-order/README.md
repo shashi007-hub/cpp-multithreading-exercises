@@ -22,3 +22,14 @@ Try the exercise first; open these one at a time.
 2. `compare_exchange_weak` refreshes `current` on failure, so the loop condition re-evaluates it automatically.
 3. The payload is a non-atomic variable. Release/acquire on `ready` is what makes the write to it visible.
 4. Use `std::this_thread::yield()` inside spin loops so you are kind to other threads.
+
+## Solution walkthrough
+
+Atomics give indivisible operations; **memory orders** give visibility guarantees.
+
+- A lock needs *acquire* on lock and *release* on unlock. Together they make everything written in one critical section visible to the next, without paying for full sequential consistency.
+- The CAS loop is the universal lock-free pattern: read, compute, try to swap, retry if someone else won. `weak` may fail spuriously, so it belongs in loops and is cheaper on ARM.
+- In `Message`, the store to `payload` is sequenced before the release store; a reader that observes `ready == true` via an acquire load is guaranteed to see the payload. With `relaxed` operations this would be a data race.
+- `relaxed` is enough for `update_max`: only the atomic variable itself matters, nothing else is published through it.
+
+When in doubt use the default `seq_cst`. Weaker orders are an optimisation to apply after profiling and with ThreadSanitizer on.
