@@ -33,3 +33,9 @@ Atomics give indivisible operations; **memory orders** give visibility guarantee
 - `relaxed` is enough for `update_max`: only the atomic variable itself matters, nothing else is published through it.
 
 When in doubt use the default `seq_cst`. Weaker orders are an optimisation to apply after profiling and with ThreadSanitizer on.
+
+## Bonus challenges
+
+- Upgrade `SpinLock` to a ticket lock for fairness.
+- Add exponential back-off to the spin loop and benchmark under contention.
+- Implement `fetch_multiply` with CAS and explain why no hardware instruction exists for it.
