@@ -24,3 +24,14 @@ Try the exercise first; open these one at a time.
 2. Each side reads its **own** index relaxed and the **other** side's index with acquire.
 3. Write the slot first, then publish the index with a release store.
 4. Padding the two indices onto separate cache lines (already done) avoids false sharing.
+
+## Solution walkthrough
+
+SPSC is the one lock-free queue that is both simple and genuinely fast, because each index has a single writer, so no CAS is needed.
+
+- The producer reads `head_` (acquire) to learn how many slots the consumer has released, writes the slot, and publishes `tail_` (release). The consumer mirrors this. The acquire/release pairs transfer ownership of slots between threads.
+- Counters never wrap to zero (until 2^64), so "full" and "empty" are distinguishable without sacrificing a slot.
+- A power-of-two capacity replaces the modulo with a mask.
+- `alignas(64)` puts `head_` and `tail_` on different cache lines; without it each push would invalidate the consumer's line.
+
+Used in audio pipelines, network packet paths and logging, where a lock on the hot path is unacceptable.
