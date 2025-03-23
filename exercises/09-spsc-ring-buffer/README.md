@@ -35,3 +35,9 @@ SPSC is the one lock-free queue that is both simple and genuinely fast, because 
 - `alignas(64)` puts `head_` and `tail_` on different cache lines; without it each push would invalidate the consumer's line.
 
 Used in audio pipelines, network packet paths and logging, where a lock on the hot path is unacceptable.
+
+## Bonus challenges
+
+- Add `try_push_batch` / `try_pop_batch` to amortise the atomic operations.
+- Cache the other side's index locally and only reload when the buffer looks full/empty.
+- Build an MPMC bounded queue (Vyukov) and discuss why it needs per-slot sequence numbers.
