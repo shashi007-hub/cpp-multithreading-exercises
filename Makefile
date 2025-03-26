@@ -1,5 +1,6 @@
 CXX ?= c++
 CXXFLAGS ?= -std=c++20 -O2 -Wall -Wextra -pthread -I.
+SANITIZE_FLAGS := -std=c++20 -O1 -g -Wall -Wextra -pthread -I.
 BUILD := build
 EXERCISE = $(firstword $(wildcard exercises/$(1)-*))
 SOLUTIONS := $(wildcard exercises/*/solution.cpp)
@@ -21,6 +22,16 @@ solution-%:
 	@mkdir -p $(BUILD)
 	@$(CXX) $(CXXFLAGS) $(call EXERCISE,$*)/solution.cpp -o $(BUILD)/solution-$*
 	@$(BUILD)/solution-$*
+
+tsan-%:
+	@mkdir -p $(BUILD)
+	@$(CXX) $(SANITIZE_FLAGS) -fsanitize=thread $(call EXERCISE,$*)/starter.cpp -o $(BUILD)/tsan-$*
+	@$(BUILD)/tsan-$*
+
+asan-%:
+	@mkdir -p $(BUILD)
+	@$(CXX) $(SANITIZE_FLAGS) -fsanitize=address,undefined $(call EXERCISE,$*)/starter.cpp -o $(BUILD)/asan-$*
+	@$(BUILD)/asan-$*
 
 clean:
 	rm -rf $(BUILD)
