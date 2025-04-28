@@ -42,3 +42,4 @@ Suggested loop for each exercise:
 | 7 | [Futures, Promises and async](exercises/07-futures-and-promises) | Intermediate | Asynchronous results / dataflow |
 | 8 | [Atomics and Memory Ordering](exercises/08-atomics-and-memory-order) | Advanced | Lock-free primitives |
 | 9 | [Lock-Free SPSC Ring Buffer](exercises/09-spsc-ring-buffer) | Advanced | Lock-free data structures |
+| 10 | [Reader-Writer Cache](exercises/10-reader-writer-cache) | Intermediate | Shared/exclusive locking |
