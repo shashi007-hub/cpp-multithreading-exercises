@@ -13,3 +13,12 @@ Implement a thread-safe `Cache<Key, Value>` optimised for read-heavy workloads.
 - `get_or_compute(key, fn)` returns the cached value, or computes it **exactly once** per key even when many threads miss simultaneously.
 
 Work in [`starter.cpp`](starter.cpp) and check yourself with `make test-10`. The reference is in [`solution.cpp`](solution.cpp) (`make solution-10`).
+
+## Hints
+
+Try the exercise first; open these one at a time.
+
+1. Readers take `std::shared_lock`, writers take `std::unique_lock` on the same `std::shared_mutex`.
+2. You cannot upgrade a shared lock. Release it, take the unique lock, and look again.
+3. The second lookup under the exclusive lock is what prevents duplicate computation.
+4. Return values by copy (or `shared_ptr`): a reference into the map would dangle after a rehash.
