@@ -31,3 +31,9 @@ Read-mostly data benefits from a lock that admits many readers at once.
 - `get_or_compute` is *double-checked* under the proper locks: optimistic shared lookup, then exclusive lookup before computing. Two threads missing at once both reach the exclusive section, but only the first inserts; the second finds the value on its re-check.
 - Computing under the exclusive lock blocks other keys during the computation. That is a deliberate simplification; the bonus lifts it.
 - `shared_mutex` has higher overhead than `mutex`, so it only wins when reads dominate and critical sections are not tiny.
+
+## Bonus challenges
+
+- Compute outside the lock by storing a `std::shared_future<Value>` per key so different keys compute in parallel.
+- Add TTL-based expiry.
+- Benchmark `shared_mutex` against `mutex` with 95% / 50% / 5% reads.
