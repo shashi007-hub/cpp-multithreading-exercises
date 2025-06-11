@@ -43,3 +43,4 @@ Suggested loop for each exercise:
 | 8 | [Atomics and Memory Ordering](exercises/08-atomics-and-memory-order) | Advanced | Lock-free primitives |
 | 9 | [Lock-Free SPSC Ring Buffer](exercises/09-spsc-ring-buffer) | Advanced | Lock-free data structures |
 | 10 | [Reader-Writer Cache](exercises/10-reader-writer-cache) | Intermediate | Shared/exclusive locking |
+| 11 | [Striped Concurrent Hash Map](exercises/11-striped-hash-map) | Intermediate | Fine-grained locking |
