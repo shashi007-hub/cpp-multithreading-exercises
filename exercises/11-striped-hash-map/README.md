@@ -20,3 +20,13 @@ Try the exercise first; open these one at a time.
 2. `update` runs the callback while holding that stripe's lock, which makes read-modify-write atomic per key.
 3. `size()` locks stripes one at a time. The total is a snapshot approximation, which is usually acceptable.
 4. Never lock two stripes at once unless you always lock them in index order.
+
+## Solution walkthrough
+
+Striping partitions shared state so that unrelated operations do not contend. With 16 stripes and uniformly distributed keys, expected contention drops by about 16x.
+
+- Each stripe is a self-contained map plus mutex, so correctness reasoning stays local: an operation only needs its own stripe.
+- `update` is the key API. A separate `find` followed by `insert` would be a check-then-act race; a callback executed under the lock avoids it.
+- `size()` and any whole-map operation touch all stripes. If they needed a *consistent* snapshot you would lock all stripes in a fixed order, which is the price of striping.
+
+Java's `ConcurrentHashMap` (pre-8) and many database lock managers use the same idea.
