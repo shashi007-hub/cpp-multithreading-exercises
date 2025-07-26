@@ -30,3 +30,9 @@ Striping partitions shared state so that unrelated operations do not contend. Wi
 - `size()` and any whole-map operation touch all stripes. If they needed a *consistent* snapshot you would lock all stripes in a fixed order, which is the price of striping.
 
 Java's `ConcurrentHashMap` (pre-8) and many database lock managers use the same idea.
+
+## Bonus challenges
+
+- Add `for_each` that locks all stripes in order and gives a consistent snapshot.
+- Choose `Stripes` from `hardware_concurrency()` at runtime.
+- Measure throughput versus a single-mutex map as threads grow from 1 to 16.
