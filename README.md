@@ -44,3 +44,4 @@ Suggested loop for each exercise:
 | 9 | [Lock-Free SPSC Ring Buffer](exercises/09-spsc-ring-buffer) | Advanced | Lock-free data structures |
 | 10 | [Reader-Writer Cache](exercises/10-reader-writer-cache) | Intermediate | Shared/exclusive locking |
 | 11 | [Striped Concurrent Hash Map](exercises/11-striped-hash-map) | Intermediate | Fine-grained locking |
+| 12 | [Latches, Barriers and Semaphores](exercises/12-latch-barrier-semaphore) | Intermediate | Coordination primitives (C++20) |
