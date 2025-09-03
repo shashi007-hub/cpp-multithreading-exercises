@@ -13,3 +13,12 @@ Three coordination problems, three C++20 primitives.
 3. `max_concurrency`: a `std::counting_semaphore` limits how many tasks run at once; verify the observed peak never exceeds the limit.
 
 Work in [`starter.cpp`](starter.cpp) and check yourself with `make test-12`. The reference is in [`solution.cpp`](solution.cpp) (`make solution-12`).
+
+## Hints
+
+Try the exercise first; open these one at a time.
+
+1. A latch is one-shot (`count_down`, `wait`). A barrier is reusable across phases.
+2. The barrier is constructed with the number of participants.
+3. You need **two** barrier waits per iteration: one between write and read, one between read and the next write.
+4. Always release the semaphore, ideally via a small RAII guard if the work can throw.
