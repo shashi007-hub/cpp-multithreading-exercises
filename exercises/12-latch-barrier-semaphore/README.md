@@ -31,3 +31,9 @@ Try the exercise first; open these one at a time.
 - **Counting semaphore**: a permit pool. It limits concurrency (connection pools, rate limiting, bounded parallelism) rather than guarding data.
 
 Note: ThreadSanitizer does not model `std::barrier` in libc++ and may report a false positive on exercise 12.
+
+## Bonus challenges
+
+- Use the barrier's completion function to swap two buffers between phases (double buffering).
+- Implement a reusable `Barrier` yourself with a mutex and condition variable (generation counter).
+- Write an RAII `Permit` type for the semaphore.
