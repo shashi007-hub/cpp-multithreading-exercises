@@ -45,3 +45,4 @@ Suggested loop for each exercise:
 | 10 | [Reader-Writer Cache](exercises/10-reader-writer-cache) | Intermediate | Shared/exclusive locking |
 | 11 | [Striped Concurrent Hash Map](exercises/11-striped-hash-map) | Intermediate | Fine-grained locking |
 | 12 | [Latches, Barriers and Semaphores](exercises/12-latch-barrier-semaphore) | Intermediate | Coordination primitives (C++20) |
+| 13 | [Map-Reduce Word Count](exercises/13-map-reduce-word-count) | Intermediate | Data parallelism (map/reduce) |
