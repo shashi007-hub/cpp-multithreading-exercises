@@ -33,3 +33,9 @@ The most scalable way to aggregate in parallel is **not to share**. Each thread 
 - A shared `unordered_map` guarded by a mutex would serialise every increment; a concurrent map (exercise 11) would help but still pays synchronisation per word.
 - Private maps cost memory proportional to distinct words per thread, but remove synchronisation from the hot loop entirely.
 - The reduce step is associative and commutative, so the merge order does not matter. This property is what lets frameworks like Hadoop and Spark distribute the same pattern over machines.
+
+## Bonus challenges
+
+- Parallelise the reduce step by hash-partitioning words into buckets.
+- Use `std::execution::par` with `std::transform_reduce` where your standard library supports it, and compare.
+- Stream lines from a file with a reader thread feeding workers through the blocking queue.
