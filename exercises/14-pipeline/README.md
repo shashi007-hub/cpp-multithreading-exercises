@@ -30,3 +30,9 @@ A pipeline overlaps work: while stage 2 processes item *n*, stage 1 already pars
 - `std::jthread` joins on destruction, so leaving the function is always safe.
 
 Real uses: video decoding, log processing, compilers (lex, parse, optimise, emit), ETL jobs.
+
+## Bonus challenges
+
+- Allow a stage to run with several worker threads and restore order with sequence numbers.
+- Bound the queues (exercise 4) so a slow stage applies back-pressure upstream.
+- Add per-stage timing and identify the bottleneck stage automatically.
