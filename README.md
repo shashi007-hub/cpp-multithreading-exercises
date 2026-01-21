@@ -47,3 +47,4 @@ Suggested loop for each exercise:
 | 12 | [Latches, Barriers and Semaphores](exercises/12-latch-barrier-semaphore) | Intermediate | Coordination primitives (C++20) |
 | 13 | [Map-Reduce Word Count](exercises/13-map-reduce-word-count) | Intermediate | Data parallelism (map/reduce) |
 | 14 | [Pipeline Pattern](exercises/14-pipeline) | Intermediate | Pipeline / stream processing |
+| 15 | [Actor / Active Object](exercises/15-actor-active-object) | Advanced | Actor model / message passing |
