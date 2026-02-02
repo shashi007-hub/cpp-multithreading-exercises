@@ -24,3 +24,14 @@ Try the exercise first; open these one at a time.
 2. The actor thread is just `while (auto m = mailbox_.pop()) (*m)();`.
 3. `ask` wraps `function` in a lambda that fulfils a `std::promise`; use `set_exception` in a catch block.
 4. Handle `void` results with `if constexpr (std::is_void_v<Result>)`.
+
+## Solution walkthrough
+
+Instead of protecting shared state with locks, **confine** it to one thread and send that thread messages. This is the actor model (Erlang, Akka) and the *Active Object* pattern.
+
+- Because one thread processes messages sequentially, the state needs no synchronisation, and handlers are free of data races by construction.
+- `tell` is fire-and-forget; `ask` is request/response via future.
+- The mailbox is the only shared object, and it is already thread safe.
+- Cost: every operation pays a queue hop and a context switch, so actors suit coarse-grained stateful components (sessions, devices, caches), not tight loops.
+
+Destruction order matters: the destructor closes the mailbox first, then the `jthread` member joins after the queue drains.
