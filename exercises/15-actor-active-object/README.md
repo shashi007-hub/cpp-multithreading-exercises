@@ -35,3 +35,9 @@ Instead of protecting shared state with locks, **confine** it to one thread and 
 - Cost: every operation pays a queue hop and a context switch, so actors suit coarse-grained stateful components (sessions, devices, caches), not tight loops.
 
 Destruction order matters: the destructor closes the mailbox first, then the `jthread` member joins after the queue drains.
+
+## Bonus challenges
+
+- Add typed messages with `std::variant` and `std::visit` instead of `std::function`.
+- Let actors reference each other and build a ping-pong benchmark.
+- Add supervision: restart an actor when a message handler throws.
