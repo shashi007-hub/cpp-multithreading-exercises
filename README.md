@@ -48,3 +48,4 @@ Suggested loop for each exercise:
 | 13 | [Map-Reduce Word Count](exercises/13-map-reduce-word-count) | Intermediate | Data parallelism (map/reduce) |
 | 14 | [Pipeline Pattern](exercises/14-pipeline) | Intermediate | Pipeline / stream processing |
 | 15 | [Actor / Active Object](exercises/15-actor-active-object) | Advanced | Actor model / message passing |
+| 16 | [Fork-Join Parallel Merge Sort](exercises/16-fork-join-merge-sort) | Intermediate | Divide and conquer / fork-join |
