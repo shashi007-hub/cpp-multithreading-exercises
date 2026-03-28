@@ -36,3 +36,9 @@ Fork-join recursion naturally exposes parallelism: the two halves are independen
 - The merge is sequential, so the top-level merge limits speedup (Amdahl's law). You should see a modest 2-4x speedup, not 8x.
 
 Production libraries (TBB, OpenMP tasks, `std::execution::par`) use a work-stealing scheduler instead of one OS thread per fork.
+
+## Bonus challenges
+
+- Replace `std::async` with tasks submitted to the thread pool from exercise 6. Beware of deadlock when tasks wait on tasks in a fixed-size pool; why does it happen?
+- Parallelise the merge using binary search to split it.
+- Implement a parallel quicksort and compare partitioning strategies.
