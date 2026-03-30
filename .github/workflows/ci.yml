@@ -1,0 +1,27 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  solutions:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run every reference solution
+        run: make all-solutions
+  thread-sanitizer:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run the solutions under ThreadSanitizer
+        run: |
+          for source in exercises/*/solution.cpp; do
+            case "$source" in *12-*) continue ;; esac
+            g++ -std=c++20 -O1 -g -fsanitize=thread -pthread -I. "$source" -o tsan_bin
+            ./tsan_bin
+          done
