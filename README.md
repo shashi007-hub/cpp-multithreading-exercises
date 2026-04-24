@@ -49,3 +49,4 @@ Suggested loop for each exercise:
 | 14 | [Pipeline Pattern](exercises/14-pipeline) | Intermediate | Pipeline / stream processing |
 | 15 | [Actor / Active Object](exercises/15-actor-active-object) | Advanced | Actor model / message passing |
 | 16 | [Fork-Join Parallel Merge Sort](exercises/16-fork-join-merge-sort) | Intermediate | Divide and conquer / fork-join |
+| 17 | [False Sharing and thread_local](exercises/17-false-sharing-thread-local) | Advanced | Performance / data layout |
