@@ -14,3 +14,12 @@ Make a sharded counter fast.
 The benchmark increments counters from four threads using packed versus padded slots and prints both timings. Both must produce the right total, but one should be dramatically faster.
 
 Work in [`starter.cpp`](starter.cpp) and check yourself with `make test-17`. The reference is in [`solution.cpp`](solution.cpp) (`make solution-17`).
+
+## Hints
+
+Try the exercise first; open these one at a time.
+
+1. `alignas(64)` on the struct also pads `sizeof` to a multiple of 64.
+2. A `thread_local` variable is initialised once per thread: `thread_local const size_t index = next.fetch_add(1);`.
+3. The shard index is `this_thread_index() % shards`.
+4. On Apple silicon the cache line is 128 bytes; 64 is still a big win, 128 is safer.
