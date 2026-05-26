@@ -33,3 +33,9 @@ Two threads writing *different* variables that share a cache line still fight ov
 - Relaxed `fetch_add` suffices because the counter is just a statistic; `total()` is an approximate snapshot while writers run and exact after they join.
 
 Take-away: correctness and performance are different axes. Measure with real hardware and look at data layout.
+
+## Bonus challenges
+
+- Compare with a single shared `std::atomic<long long>` incremented by all threads.
+- Use `std::hardware_destructive_interference_size` where available.
+- Implement a thread-local buffer that flushes to a global counter every 1000 increments.
