@@ -50,3 +50,4 @@ Suggested loop for each exercise:
 | 15 | [Actor / Active Object](exercises/15-actor-active-object) | Advanced | Actor model / message passing |
 | 16 | [Fork-Join Parallel Merge Sort](exercises/16-fork-join-merge-sort) | Intermediate | Divide and conquer / fork-join |
 | 17 | [False Sharing and thread_local](exercises/17-false-sharing-thread-local) | Advanced | Performance / data layout |
+| 18 | [Thread-Safe Lazy Initialisation](exercises/18-lazy-init-call-once) | Intermediate | Singleton / initialisation patterns |
