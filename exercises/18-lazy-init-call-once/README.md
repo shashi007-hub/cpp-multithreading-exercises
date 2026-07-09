@@ -34,3 +34,9 @@ Lazy initialisation is a classic source of subtle bugs. The famous broken patter
 - A function-local static is the idiomatic one-liner for process-wide singletons; the compiler emits the guard for you.
 
 Prefer dependency injection to global singletons where possible; they make testing and shutdown order harder.
+
+## Bonus challenges
+
+- Make `LazyValue` re-attempt initialisation when the factory throws and test it.
+- Break `DoubleCheckedSingleton` on purpose with a plain pointer and run TSan.
+- Implement `std::atomic<std::shared_ptr<T>>`-based lazy init and compare.
