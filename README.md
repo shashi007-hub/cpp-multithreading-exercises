@@ -51,3 +51,4 @@ Suggested loop for each exercise:
 | 16 | [Fork-Join Parallel Merge Sort](exercises/16-fork-join-merge-sort) | Intermediate | Divide and conquer / fork-join |
 | 17 | [False Sharing and thread_local](exercises/17-false-sharing-thread-local) | Advanced | Performance / data layout |
 | 18 | [Thread-Safe Lazy Initialisation](exercises/18-lazy-init-call-once) | Intermediate | Singleton / initialisation patterns |
+| 19 | [Cooperative Cancellation with stop_token](exercises/19-cooperative-cancellation) | Advanced | Cancellation / lifecycle management |
