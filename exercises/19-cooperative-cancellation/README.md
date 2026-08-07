@@ -30,3 +30,9 @@ Killing a thread is not safe in C++. The only robust approach is **cooperative**
 - Plain `sleep_for` ignores cancellation. Waiting on a `condition_variable_any` with the token wakes immediately on a stop request, so shutdown latency becomes microseconds, not one period.
 - In `parallel_find`, each worker polls `stop_requested()` in its loop. A cheap atomic check per element is fine; for very hot loops check every N iterations.
 - Having `~PeriodicTask` request stop and then letting `jthread` join gives deterministic shutdown with no dangling thread.
+
+## Bonus challenges
+
+- Use `std::stop_callback` to cancel a blocking operation (e.g. close a socket) when stop is requested.
+- Add a `pause()` / `resume()` pair to `PeriodicTask`.
+- Make `parallel_find` return the *lowest* index among matches while still stopping early.
