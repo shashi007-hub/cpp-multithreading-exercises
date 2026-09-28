@@ -35,3 +35,9 @@ This capstone combines most earlier techniques: a mutex-guarded priority queue, 
 - `wait_until` takes an absolute `steady_clock` time point, which is immune to wall-clock changes.
 
 Natural extensions are repeating timers and running tasks on the thread pool from exercise 6.
+
+## Bonus challenges
+
+- Add `schedule_every(period, task)` that re-arms itself.
+- Dispatch due tasks to a `ThreadPool` so a slow task cannot delay the others.
+- Replace the heap with a hierarchical timing wheel and discuss when it beats a heap.
