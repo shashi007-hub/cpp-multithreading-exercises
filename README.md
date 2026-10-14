@@ -53,3 +53,32 @@ Suggested loop for each exercise:
 | 18 | [Thread-Safe Lazy Initialisation](exercises/18-lazy-init-call-once) | Intermediate | Singleton / initialisation patterns |
 | 19 | [Cooperative Cancellation with stop_token](exercises/19-cooperative-cancellation) | Advanced | Cancellation / lifecycle management |
 | 20 | [Capstone: Timer Scheduler](exercises/20-timer-scheduler) | Advanced | Event loop / timed executor |
+
+## Paradigms covered
+
+| Paradigm | Exercises |
+| --- | --- |
+| Thread-per-task and data parallelism | 1, 13 |
+| Shared memory with mutual exclusion | 2, 3, 10, 11 |
+| Monitors and condition variables | 4, 5 |
+| Task-based concurrency and futures | 6, 7, 16 |
+| Lock-free programming and atomics | 8, 9, 17 |
+| Message passing, pipelines and actors | 14, 15 |
+| Coordination primitives (latch, barrier, semaphore) | 12 |
+| Initialisation, cancellation and lifecycle | 18, 19 |
+| Event loops and schedulers | 20 |
+
+## Repository layout
+
+```
+common/       tiny test helpers and the reference BlockingQueue
+exercises/    one directory per exercise: README.md, starter.cpp, solution.cpp
+docs/         concept notes, pattern catalogue, pitfalls, tooling
+scripts/      helper scripts
+```
+
+Start with [docs/learning-path.md](docs/learning-path.md), and keep [docs/pitfalls.md](docs/pitfalls.md) nearby.
+
+## License
+
+MIT, see [LICENSE](LICENSE).
